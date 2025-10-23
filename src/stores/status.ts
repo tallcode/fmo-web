@@ -9,12 +9,12 @@ import { ref } from 'vue'
 // }
 
 async function getClient() {
-  const response = await axios.get<string[]>('/api/client', { responseType: 'json' })
+  const response = await axios.get<Client[]>('/api/client', { responseType: 'json' })
   return Array.isArray(response.data) ? response.data : []
 }
 
 export const useStatusStore = defineStore('status', () => {
-  const clients = ref<string[]>([])
+  const clients = ref<Client[]>([])
   // const count = ref(0)
 
   async function refresh() {
@@ -22,7 +22,7 @@ export const useStatusStore = defineStore('status', () => {
     // count.value = await getCount().catch(() => 0)
   }
 
-  useTimeoutPoll(refresh, 1000, {
+  useTimeoutPoll(refresh, 60 * 1000, {
     immediateCallback: true,
   })
 

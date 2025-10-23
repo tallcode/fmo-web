@@ -16,10 +16,21 @@ export async function clients() {
     },
   })
   return result.body.data
-    .map(client => client.clientid)
-    .filter(clientid => clientid.startsWith('FMO-'))
-    .map(clientid => clientid.split('-')[1])
-    .filter(clientid => !!clientid)
+    .reduce((acc, cur) => {
+      if (cur.clientid && cur.clientid.startsWith('FMO-')) {
+        acc.push({
+          clientId: cur.clientid,
+          callsign: cur.clientid.split('-')[1],
+          connectedAt: (new Date(cur.connected_at)).getTime(),
+          createdAt: (new Date(cur.created_at)).getTime(),
+        })
+      }
+      return acc
+    }, [])
+    // .map(client => client.clientid)
+    // .filter(clientid => clientid.startsWith('FMO-'))
+    // .map(clientid => clientid.split('-')[1])
+    // .filter(clientid => !!clientid)
 }
 
 export async function count() {
