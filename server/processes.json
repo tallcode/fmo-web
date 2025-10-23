@@ -1,0 +1,11 @@
+{
+  "apps": [{
+    "script": "index.js",
+    "instances": "2",
+    "exec_mode": "cluster"
+  }, {
+    "script"    : "count.js",
+    "instances" : "1",
+    "exec_mode" : "cluster"
+  }]
+}
