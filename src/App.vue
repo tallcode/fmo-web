@@ -24,7 +24,7 @@ const { formatDuration } = useTimeStore()
           <v-list-item-title>{{ client.callsign }}</v-list-item-title>
           <template #append>
             <v-list-item-action class="flex-column align-end">
-              <small class="text-high-emphasis opacity-60">{{ formatDuration(client.connectedAt, true) }}</small>
+              <small class="text-high-emphasis opacity-60">{{ formatDuration(client.connectedAt) }}</small>
             </v-list-item-action>
           </template>
         </v-list-item>
