@@ -6,6 +6,7 @@ import process from 'node:process'
 import compression from 'compression'
 import express from 'express'
 import * as emqx from './emqx.js'
+import { createAudioProxy } from './transport.js'
 import 'dotenv/config'
 
 const SECURE = process.env.SECURE === 'TRUE'
@@ -38,6 +39,8 @@ server.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Server is listening on port ${port}`)
 })
+
+createAudioProxy(server)
 
 if (SECURE) {
   http.createServer((req, res) => {

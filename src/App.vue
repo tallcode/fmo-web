@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import AudioPlayer from './components/AudioPlayer/index.vue'
 import { useStatusStore } from './stores/status'
 import { useTimeStore } from './stores/time'
 
@@ -13,6 +14,9 @@ const { formatDuration } = useTimeStore()
       <v-app-bar-title>
         FMO<span>&nbsp;&nbsp;</span><span class="text-caption">杭州中继</span>
       </v-app-bar-title>
+      <template #append>
+        <AudioPlayer />
+      </template>
     </v-app-bar>
 
     <v-main>
