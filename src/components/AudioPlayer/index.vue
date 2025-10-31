@@ -5,7 +5,7 @@ import { AudioPlayer } from './audioPlayer'
 
 const play = ref(false)
 const audioPlayer = ref<AudioPlayer | null>(null)
-const { data, open, close } = useWebSocket(`ws://${window.location.host}/audio`, {
+const { data, open, close } = useWebSocket(`${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/audio`, {
   immediate: false,
 })
 
